@@ -32,6 +32,18 @@ Vamos a realizar las siguientes operaciones, para seleccionar un conjunto de dat
 """
 
 # ╔═╡ 6c10386c-3dcb-42d8-b834-85e70fb2b3eb
+df = CSV.read("WHO-COVID-19-global-data.csv",DataFrame)
+
+# ╔═╡ fa0c29fc-e66d-4712-a4cb-ed14a88058dd
+sel = filter(row->row["Country"]=="Argentina",df)
+
+# ╔═╡ 73f06f28-2d99-4228-921c-68c17dd80be2
+primer_dia = findfirst(item -> item >=1, sel[!,"Cumulative_cases"])
+
+# ╔═╡ 0c27c42a-23c8-4ce5-b339-f42dca238b2b
+datos = sel[primer_dia-5:end,1:end]
+
+# ╔═╡ 9772213d-7edf-47f1-ab54-f113806f49e8
 
 
 # ╔═╡ ddf46cb1-9f4a-43e7-820a-7722a865f0fe
@@ -2398,6 +2410,10 @@ version = "1.4.1+0"
 # ╟─7bfd4205-a13e-4ce4-9a8f-9c1e86414550
 # ╟─c3e2631a-c0f7-438b-94da-c6f85d13b917
 # ╠═6c10386c-3dcb-42d8-b834-85e70fb2b3eb
+# ╠═fa0c29fc-e66d-4712-a4cb-ed14a88058dd
+# ╠═73f06f28-2d99-4228-921c-68c17dd80be2
+# ╠═0c27c42a-23c8-4ce5-b339-f42dca238b2b
+# ╠═9772213d-7edf-47f1-ab54-f113806f49e8
 # ╟─ddf46cb1-9f4a-43e7-820a-7722a865f0fe
 # ╟─7386a708-0bdc-4bec-8c3e-9c6b5f7d30a6
 # ╟─b96e4d23-c011-407b-92c2-1d2f8133460b
