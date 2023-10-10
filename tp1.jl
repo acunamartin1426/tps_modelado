@@ -43,8 +43,52 @@ primer_dia = findfirst(item -> item >=1, sel[!,"Cumulative_cases"])
 # ╔═╡ 0c27c42a-23c8-4ce5-b339-f42dca238b2b
 datos = sel[primer_dia-5:end,1:end]
 
-# ╔═╡ 9772213d-7edf-47f1-ab54-f113806f49e8
+# ╔═╡ 20208879-462b-45bc-9fa9-a572a8bde168
+casos = [0 for n=1:size(datos)[1]÷7+1]
 
+# ╔═╡ 7f17d808-eaa9-4068-bd71-06d0785e7970
+casos_acumulados = [0 for n=1:size(datos)[1]÷7+1]
+
+# ╔═╡ d4a7f17e-09a3-4292-842f-a49f6109c897
+muertes = [0 for n=1:size(datos)[1]÷7+1]
+
+# ╔═╡ 6498d883-08d1-400f-88cb-0c58cd3548e0
+muertes_acumuladas = [0 for n=1:size(datos)[1]÷7+1]
+
+# ╔═╡ 83ba803a-eae3-4157-9540-3f39adb96a73
+for i in 1:size(casos)[1]
+	casos[i] = sum(datos[7*i-6:min(7*i,size(datos)[1]),"New_cases"])
+	casos_acumulados[i] = datos[min(7*i,size(datos)[1]),"Cumulative_cases"]
+	muertes[i] = sum(datos[7*i-6:min(7*i,size(datos)[1]),"New_deaths"])
+	muertes_acumuladas[i] = sum(datos[7*i-6:min(7*i,size(datos)[1]),"Cumulative_deaths"])
+end
+
+# ╔═╡ 6ec91807-21f9-46bf-ad22-44d0e958dee0
+df2 = DataFrame("casos" => casos,"casos_acumulados" => casos_acumulados,"muertes" => muertes, "muertes_acumuladas" => muertes_acumuladas)
+
+# ╔═╡ 33e76aee-8387-4479-831a-16908669b380
+
+
+# ╔═╡ 00bc2eb3-876b-41fc-a6dd-ce4829189e4a
+
+
+# ╔═╡ 48414161-a743-4d03-a6a7-f3ecba281b8e
+
+
+# ╔═╡ 10656a1e-7e20-43f0-a383-dfa5edc24b63
+
+
+# ╔═╡ 102e0a59-86e8-4957-bda8-3dea29dbde0f
+
+
+# ╔═╡ 3d6bca26-1f69-47b9-a655-8f72e93c94c7
+
+
+# ╔═╡ 067d9bc5-8842-4ae2-9aba-0fc74a57906d
+casos_acumulados
+
+# ╔═╡ 59e98005-1abf-40be-b3fb-f3a33535c328
+semanas
 
 # ╔═╡ ddf46cb1-9f4a-43e7-820a-7722a865f0fe
 md""" ## Modelado: 
@@ -2413,7 +2457,20 @@ version = "1.4.1+0"
 # ╠═fa0c29fc-e66d-4712-a4cb-ed14a88058dd
 # ╠═73f06f28-2d99-4228-921c-68c17dd80be2
 # ╠═0c27c42a-23c8-4ce5-b339-f42dca238b2b
-# ╠═9772213d-7edf-47f1-ab54-f113806f49e8
+# ╠═20208879-462b-45bc-9fa9-a572a8bde168
+# ╠═7f17d808-eaa9-4068-bd71-06d0785e7970
+# ╠═d4a7f17e-09a3-4292-842f-a49f6109c897
+# ╠═6498d883-08d1-400f-88cb-0c58cd3548e0
+# ╠═83ba803a-eae3-4157-9540-3f39adb96a73
+# ╠═6ec91807-21f9-46bf-ad22-44d0e958dee0
+# ╠═33e76aee-8387-4479-831a-16908669b380
+# ╠═00bc2eb3-876b-41fc-a6dd-ce4829189e4a
+# ╠═48414161-a743-4d03-a6a7-f3ecba281b8e
+# ╠═10656a1e-7e20-43f0-a383-dfa5edc24b63
+# ╠═102e0a59-86e8-4957-bda8-3dea29dbde0f
+# ╠═3d6bca26-1f69-47b9-a655-8f72e93c94c7
+# ╠═067d9bc5-8842-4ae2-9aba-0fc74a57906d
+# ╠═59e98005-1abf-40be-b3fb-f3a33535c328
 # ╟─ddf46cb1-9f4a-43e7-820a-7722a865f0fe
 # ╟─7386a708-0bdc-4bec-8c3e-9c6b5f7d30a6
 # ╟─b96e4d23-c011-407b-92c2-1d2f8133460b
